@@ -5,5 +5,5 @@ class Todo < ActiveRecord::Base
 
   scope :completed, where(completed: true)
   scope :pending, where(completed: false)
-  default_scope order: 'todos.created_at DESC'
+  default_scope order: 'todos.created_at ASC'
 end
