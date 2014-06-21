@@ -1,22 +1,53 @@
+<script type="text/javascript">
+$(function(){
+	$("#showLess").hide();
+		$("#showMore").click(function(){
+		$('#showMore').hide();
+		$('#showLess').show();
+  }); 
+});
+
+$(function(){
+		$("#showLess").click(function(){
+		$('#showMore').show();
+		$("#showLess").hide();
+  }); 
+});
+
+	$(function(){
+    $('#flash').show(600);   
+
+  });
+</script>
 <div class="page_container">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">My To-do List</h3>
+	    <h3 class="panel-title">My To-do List <%= render "shared/flash_messages" %></h3>
 	  </div>
 
 	  <div class="panel-body">
 	  	<div class="row">
 		    <%= form_for @todo, :html=> { :multipart => true} do |f| %>
 		    	<div class="col-xs-10"><%= f.text_field :title, :class => "form-control", :placeholder => "I need to..." %></div>
-          <div class="col-xs-2"><%= f.submit 'Save', :class => "btn btn-success pull-right" %></div>
+          <div class="col-xs-2"><%= f.submit 'Add', :class => "btn btn-success pull-right" %></div>
         <% end %>
       </div>
       <hr>
-      </div>
-      <ul class="list-group">
-      	
-		   	<%= render @completed_todos %>
-		  </ul>
+    </div>
+      
+    <ul class="list-group">
+	   	<%= render @pending_todos %>
+	   	<%= render @completed_todos if @pending_todos.count < 1 %>
+	   	<div id="completed" class="collapse">
+	   		<%= render @completed_todos %>
+	   	</div>
+	  </ul>
 	  
+	  <% unless @completed_todos.count < 1 || @pending_todos.count < 1 %>
+	    <div class="show_more">
+	    	<a href='#' data-toggle="collapse" data-target="#completed" id="showLess">Hide Completed</a>
+	      <a href='#' data-toggle="collapse" data-target="#completed" id="showMore">Show Completed</a> 
+	    </div>
+    <% end %>
 	</div>
 </div>

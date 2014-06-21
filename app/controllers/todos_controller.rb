@@ -11,6 +11,7 @@ class TodosController < ApplicationController
     if @todo.save
       redirect_to root_path
     else
+    	flash[:notice] = "1-100 characters required!"
       redirect_to root_path
     end
 	end

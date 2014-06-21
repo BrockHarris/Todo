@@ -1,6 +1,11 @@
 <li class="list-group-item">
-	<span class="glyphicon glyphicon-unchecked"></span>
-	<%= todo.title %>
-	<%# link_to 'Toggle', toggle_todo_path(todo) %> 
-	<%= link_to "Delete", todo_path(todo), :method => :delete %>
+	<% if todo.completed? %>
+		<%= link_to '<span class="glyphicon glyphicon glyphicon-ok"></span>'.html_safe, toggle_todo_path(todo), :class=>"toggle_icon" %>
+		<span class="completed"><%= todo.title %></span>
+	<% else %>
+		<%= link_to '<span class="glyphicon glyphicon-unchecked"></span>'.html_safe, toggle_todo_path(todo), :class=>"toggle_icon" %>
+		<%= todo.title %>
+	<% end %>
+
+	<%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, todo_path(todo), :method => :delete, :class=>"toggle_icon delete" %>
 </li>

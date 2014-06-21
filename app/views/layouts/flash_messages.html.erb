@@ -1,0 +1,5 @@
+<% if flash[:notice].present? %>
+  <span id="flash" class="label label-warning">
+    <%= content_tag :span, flash[:notice] %>
+  </span>
+<% end %>
