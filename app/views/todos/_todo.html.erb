@@ -1,0 +1,6 @@
+<li class="list-group-item">
+	<span class="glyphicon glyphicon-unchecked"></span>
+	<%= todo.title %>
+	<%# link_to 'Toggle', toggle_todo_path(todo) %> 
+	<%= link_to "Delete", todo_path(todo), :method => :delete %>
+</li>
